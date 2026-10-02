@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Gourmet Go — The Future of Fast Food</title>
   <meta name="description" content="Gourmet Go: smash burgers, crispy chicken and loaded fries. Drive-thru, dine-in, or delivery on DoorDash.">
-  <meta name="theme-color" content="#0c0a07">
+  <meta name="theme-color" content="#0a0907">
   <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Manrope:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="Gourmet Go home">
-        <img src="images/logo.svg" alt="" width="40" height="40">
-        <span class="brand-word">Gourmet <b>Go</b></span>
+        <img src="images/logo.svg" alt="" width="34" height="34">
+        <span class="brand-word">Gourmet Go</span>
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
       <nav id="nav-links" class="nav-links">
         <a href="#menu">Menu</a>
         <a href="#order">Ways to order</a>
-        <a href="#about">About</a>
+        <a href="#about">Our story</a>
         <a href="#visit">Visit</a>
         <a href="https://www.doordash.com/store/44671789" class="btn btn-small js-doordash" target="_blank" rel="noopener">Order now</a>
       </nav>
@@ -36,106 +36,106 @@
     <section class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-content">
-        <img class="hero-logo" src="images/logo.svg" alt="" width="96" height="96">
-        <p class="eyebrow">Gourmet fast food</p>
-        <h1 class="glow">The future of <br>fast food.</h1>
+        <img class="hero-logo" src="images/logo.svg" alt="" width="72" height="72">
+        <p class="eyebrow eyebrow-rule">Gourmet fast food</p>
+        <h1 class="metal">The future of <br>fast food.</h1>
         <p class="lead">Smash burgers, crispy chicken and loaded fries, finished with our signature Gourmet Go sauce and seasoning.</p>
         <div class="hero-actions">
           <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
-          <a href="#menu" class="btn btn-ghost">See the menu</a>
+          <a href="#menu" class="btn btn-ghost">View the menu</a>
         </div>
-        <ul class="hero-pills">
-          <li>Drive-thru</li>
-          <li>Dine-in</li>
-          <li>Delivery</li>
-        </ul>
+        <p class="hero-services">Drive-thru <i></i> Dine-in <i></i> Delivery</p>
       </div>
     </section>
 
-    <div class="neon-line" aria-hidden="true"></div>
+    <div class="hairline" aria-hidden="true"></div>
 
     <section id="menu" class="section">
       <div class="container">
-        <p class="eyebrow center">The menu</p>
-        <h2 class="center">Fast food, done gourmet</h2>
-        <div class="filters" role="tablist" aria-label="Filter menu">
-          <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
-          <button class="filter" data-filter="burgers" role="tab" aria-selected="false">Burgers</button>
-          <button class="filter" data-filter="chicken" role="tab" aria-selected="false">Chicken</button>
-          <button class="filter" data-filter="loaded" role="tab" aria-selected="false">Loaded fries</button>
-          <button class="filter" data-filter="sides" role="tab" aria-selected="false">Sides</button>
-        </div>
-        <div id="menu-grid" class="menu-grid"></div>
-        <div class="center menu-cta">
-          <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order these on DoorDash</a>
+        <header class="section-head">
+          <p class="eyebrow eyebrow-rule">The menu</p>
+          <h2>Fast food, <em>done gourmet.</em></h2>
+        </header>
+        <div id="menu-board" class="menu-board"></div>
+        <div class="menu-foot">
+          <p class="muted small">Prices as listed on DoorDash.</p>
+          <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
         </div>
       </div>
     </section>
 
     <section id="order" class="section section-alt">
       <div class="container">
-        <p class="eyebrow center">Ways to order</p>
-        <h2 class="center">However you're hungry</h2>
+        <header class="section-head">
+          <p class="eyebrow eyebrow-rule">Ways to order</p>
+          <h2>However you're <em>hungry.</em></h2>
+        </header>
         <div class="ways">
           <article class="way">
-            <div class="way-icon" aria-hidden="true">🚗</div>
+            <svg class="way-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 13 5.4 8.2A2 2 0 0 1 7.3 7h9.4a2 2 0 0 1 1.9 1.2l1.9 4.8v4a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1zM3.5 13h17M7 15.2h1.5M15.5 15.2H17"/></svg>
             <h3>Drive-thru</h3>
             <p>Pull up, order and go. Gourmet food without leaving your car.</p>
           </article>
           <article class="way">
-            <div class="way-icon" aria-hidden="true">🍽️</div>
+            <svg class="way-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v18M5 3v4.5a2 2 0 0 0 4 0V3M17 21V3c-2 0-3.5 2.2-3.5 5.5V13H17"/></svg>
             <h3>Dine-in</h3>
-            <p>Grab a seat in our dining room and eat it fresh off the line.</p>
+            <p>Take a seat in our dining room and eat it fresh off the line.</p>
           </article>
           <article class="way">
-            <div class="way-icon" aria-hidden="true">🛵</div>
+            <svg class="way-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 13h-11zM9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
             <h3>Delivery</h3>
             <p>Order on DoorDash and get Gourmet Go brought to your door.</p>
-            <a href="https://www.doordash.com/store/44671789" class="text-link js-doordash" target="_blank" rel="noopener">Order on DoorDash →</a>
+            <a href="https://www.doordash.com/store/44671789" class="text-link js-doordash" target="_blank" rel="noopener">Order on DoorDash <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="promo">
+    <section class="section promo">
       <div class="container promo-grid">
-        <img src="images/order-bag.jpg" alt="Gourmet Go logo glowing above a branded paper takeout bag" loading="lazy" width="1320" height="1269">
+        <figure class="frame">
+          <img src="images/order-bag.jpg" alt="Gourmet Go logo glowing above a branded paper takeout bag" loading="lazy" width="1320" height="1269">
+        </figure>
         <div>
-          <p class="eyebrow">Delivery</p>
-          <h2 class="glow">Hungry?<br>Order now.</h2>
-          <p class="muted">Get your favorites delivered hot and fast through DoorDash.</p>
+          <p class="eyebrow eyebrow-rule">Delivery</p>
+          <h2 class="metal">Hungry? <br>Order now.</h2>
+          <p class="muted promo-copy">Your favorites, delivered hot through DoorDash.</p>
           <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section section-alt">
       <div class="container about-grid">
         <div>
-          <p class="eyebrow">Our story</p>
-          <h2>Gourmet quality at fast food speed</h2>
+          <p class="eyebrow eyebrow-rule">Our story</p>
+          <h2>Gourmet quality, <em>fast food speed.</em></h2>
           <p class="muted">Gourmet Go was built on one idea: fast food shouldn't mean settling. Smash burgers, crispy chicken and loaded fries, done right and served fast.</p>
-          <ul class="checks">
-            <li>80/20 smash patties on toasted potato rolls</li>
-            <li>Signature Gourmet Go sauce and seasoning</li>
-            <li>Drive-thru, dine-in or DoorDash delivery</li>
-          </ul>
+          <dl class="facts">
+            <div><dt>80/20</dt><dd>Smash patties on toasted potato rolls</dd></div>
+            <div><dt>Signature</dt><dd>Gourmet Go sauce and seasoning</dd></div>
+            <div><dt>3 ways</dt><dd>Drive-thru, dine-in or delivery</dd></div>
+          </dl>
         </div>
-        <img class="about-img" src="images/storefront-drive-thru.jpg" alt="Gourmet Go restaurant at dusk with glowing gold signage and a drive-thru lane" loading="lazy" width="1320" height="1250">
+        <figure class="frame">
+          <img src="images/storefront-drive-thru.jpg" alt="Gourmet Go restaurant at dusk with glowing gold signage and a drive-thru lane" loading="lazy" width="1320" height="1250">
+        </figure>
       </div>
     </section>
 
-    <section id="visit" class="section section-alt">
+    <section id="visit" class="section">
       <div class="container visit-grid">
-        <img class="visit-img" src="images/storefront-night.jpg" alt="Cars lined up outside the Gourmet Go restaurant at night" loading="lazy" width="1147" height="1149">
+        <figure class="frame">
+          <img src="images/storefront-night.jpg" alt="Cars lined up outside the Gourmet Go restaurant at night" loading="lazy" width="1147" height="1149">
+        </figure>
         <div>
-          <p class="eyebrow">Visit us</p>
-          <h2>Come see the glow</h2>
+          <p class="eyebrow eyebrow-rule">Visit us</p>
+          <h2>Follow the <em>glow.</em></h2>
           <!-- TODO: replace with the real address, hours and map link -->
           <div class="info">
             <h3>Location</h3>
             <p class="muted">123 Main Street<br>Your City, ST 00000</p>
-            <a href="https://maps.google.com/" class="text-link" target="_blank" rel="noopener">Get directions →</a>
+            <a href="https://maps.google.com/" class="text-link" target="_blank" rel="noopener">Get directions <span aria-hidden="true">→</span></a>
           </div>
           <div class="info">
             <h3>Hours</h3>
@@ -150,23 +150,20 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section section-alt">
       <div class="container contact-grid">
         <div>
-          <p class="eyebrow">Get in touch</p>
-          <h2>Questions, catering or feedback?</h2>
+          <p class="eyebrow eyebrow-rule">Get in touch</p>
+          <h2>Questions, catering <em>or feedback.</em></h2>
           <p class="muted">Send us a message and we'll get back to you within one business day.</p>
         </div>
         <form id="contact-form" class="contact-form" novalidate>
-          <label>Name
-            <input type="text" name="name" required autocomplete="name">
-          </label>
-          <label>Email
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <label>Message
-            <textarea name="message" rows="4" required></textarea>
-          </label>
+          <label for="cf-name">Name</label>
+          <input id="cf-name" type="text" name="name" required autocomplete="name">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" type="email" name="email" required autocomplete="email">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
           <button type="submit" class="btn">Send message</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -175,13 +172,19 @@
   </main>
 
   <footer class="site-footer">
-    <div class="neon-line" aria-hidden="true"></div>
+    <div class="hairline" aria-hidden="true"></div>
     <div class="container footer-inner">
       <a href="#top" class="brand">
-        <img src="images/logo.svg" alt="" width="32" height="32">
-        <span class="brand-word">Gourmet <b>Go</b></span>
+        <img src="images/logo.svg" alt="" width="28" height="28">
+        <span class="brand-word">Gourmet Go</span>
       </a>
-      <p class="small">The future of fast food. &copy; <span id="year"></span> Gourmet Go.</p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#menu">Menu</a>
+        <a href="#order">Ways to order</a>
+        <a href="#visit">Visit</a>
+        <a href="https://www.doordash.com/store/44671789" class="js-doordash" target="_blank" rel="noopener">DoorDash</a>
+      </nav>
+      <p class="small">&copy; <span id="year"></span> Gourmet Go</p>
     </div>
   </footer>
 
