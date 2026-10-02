@@ -7,7 +7,7 @@ const MENU = [
   { name: "GoBurger", desc: "Single 80/20 smash patty, American cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 8.99, from: true, category: "burgers", tags: [], emoji: "🍔" },
   { name: "Double GoBurger", desc: "Double smash patties, double cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 12.89, category: "burgers", tags: [], emoji: "🍔" },
   { name: "TripleThreat GoBurger", desc: "Triple smash patties, cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 16.59, category: "burgers", tags: [], emoji: "🍔" },
-  { name: "Crispy Chicken Sandwich", desc: "Crispy chicken, lettuce, pickles and Gourmet Go sauce on a toasted potato roll.", price: 12.49, category: "chicken", tags: [], emoji: "🐔" },
+  { name: "Crispy Chicken Sandwich", desc: "Crispy chicken, lettuce, pickles and Gourmet Go sauce on a toasted potato roll.", price: 12.49, category: "chicken", tags: [], emoji: "🥪" },
   { name: "Go Nuggets", desc: "Crispy, golden chicken nuggets.", price: 5.99, category: "chicken", tags: [], emoji: "🍗" },
   { name: "Go Wings", desc: "5 crispy golden wings, breaded and tossed in your choice of signature Gourmet Go sauce.", price: 7.99, category: "chicken", tags: [], emoji: "🍗" },
   { name: "Voodoo Fries", desc: "Crispy golden fries loaded with spicy Cajun seasoning, creamy ranch drizzle, signature voodoo sauce, and finished with Gourmet Go seasoning.", price: 7.59, category: "loaded", tags: ["Spicy"], emoji: "🌶️" },
