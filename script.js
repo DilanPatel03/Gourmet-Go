@@ -1,20 +1,20 @@
 // Your DoorDash store link. Every "Order" button on the site uses this.
 const DOORDASH_URL = "https://www.doordash.com/store/44671789";
 
-// Menu data. Edit this list to change what appears on the site.
+// Menu data, from the Gourmet Go DoorDash store. Edit this list to change what appears on the site.
+// `from: true` shows "From $X" for items whose price depends on options.
 const MENU = [
-  { name: "The Gourmet Burger", desc: "Double smash patty, aged cheddar, caramelized onions and house Go sauce on a brioche bun.", price: 9.99, category: "burgers", tags: ["Signature"], emoji: "🍔" },
-  { name: "Truffle Mushroom Burger", desc: "Seared patty, Swiss, roasted mushrooms and truffle aioli.", price: 10.99, category: "burgers", tags: [], emoji: "🍔" },
-  { name: "Smokehouse Bacon Burger", desc: "Thick-cut bacon, smoked gouda, crispy onions and bourbon BBQ.", price: 11.49, category: "burgers", tags: ["Fan favorite"], emoji: "🥓" },
-  { name: "Hot Honey Chicken Sandwich", desc: "Buttermilk fried chicken, hot honey glaze, pickles and slaw.", price: 9.49, category: "chicken", tags: ["Spicy"], emoji: "🌶️" },
-  { name: "Crispy Tenders (4 pc)", desc: "Hand-breaded tenders with your choice of two house sauces.", price: 8.49, category: "chicken", tags: [], emoji: "🍗" },
-  { name: "Gold Fries", desc: "Hand-cut fries with garlic parmesan seasoning.", price: 3.99, category: "sides", tags: [], emoji: "🍟" },
-  { name: "Loaded Truffle Fries", desc: "Truffle oil, parmesan, herbs and a side of aioli.", price: 5.99, category: "sides", tags: ["Signature"], emoji: "🍟" },
-  { name: "Onion Rings", desc: "Beer-battered sweet onion rings with smoky dipping sauce.", price: 4.49, category: "sides", tags: [], emoji: "🧅" },
-  { name: "Salted Caramel Shake", desc: "Hand-spun vanilla custard with salted caramel swirl.", price: 5.99, category: "shakes", tags: [], emoji: "🥤" },
-  { name: "Cookies & Cream Shake", desc: "Hand-spun with real cookie pieces and whipped cream.", price: 5.99, category: "shakes", tags: [], emoji: "🍪" },
-  { name: "Fresh Lemonade", desc: "Squeezed daily. Classic or strawberry.", price: 2.99, category: "shakes", tags: [], emoji: "🍋" },
-  { name: "The Go Combo", desc: "Gourmet Burger, Gold Fries and a drink.", price: 14.49, category: "burgers", tags: ["Best value"], emoji: "🍱" },
+  { name: "GoBurger", desc: "Single 80/20 smash patty, American cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 8.99, from: true, category: "burgers", tags: [], emoji: "🍔" },
+  { name: "Double GoBurger", desc: "Double smash patties, double cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 12.89, category: "burgers", tags: [], emoji: "🍔" },
+  { name: "TripleThreat GoBurger", desc: "Triple smash patties, cheese, lettuce, tomato, pickles and Gourmet Go sauce on a toasted potato roll.", price: 16.59, category: "burgers", tags: [], emoji: "🍔" },
+  { name: "Crispy Chicken Sandwich", desc: "Crispy chicken, lettuce, pickles and Gourmet Go sauce on a toasted potato roll.", price: 12.49, category: "chicken", tags: [], emoji: "🐔" },
+  { name: "Go Nuggets", desc: "Crispy, golden chicken nuggets.", price: 5.99, category: "chicken", tags: [], emoji: "🍗" },
+  { name: "Go Wings", desc: "5 crispy golden wings, breaded and tossed in your choice of signature Gourmet Go sauce.", price: 7.99, category: "chicken", tags: [], emoji: "🍗" },
+  { name: "Voodoo Fries", desc: "Crispy golden fries loaded with spicy Cajun seasoning, creamy ranch drizzle, signature voodoo sauce, and finished with Gourmet Go seasoning.", price: 7.59, category: "loaded", tags: ["Spicy"], emoji: "🌶️" },
+  { name: "Garlic Noir Fries", desc: "Golden crispy fries layered with creamy garlic parmesan sauce and cracked black pepper.", price: 7.59, category: "loaded", tags: [], emoji: "🧄" },
+  { name: "Buffalo Ranch Fries", desc: "Golden crispy fries topped with buffalo ranch drizzle and creamy cheese sauce.", price: 7.59, category: "loaded", tags: [], emoji: "🔥" },
+  { name: "Golden Fries", desc: "Golden crispy fries layered with warm cheese sauce and Gourmet Go signature seasoning.", price: 7.59, category: "loaded", tags: [], emoji: "🧀" },
+  { name: "French Fries", desc: "Crispy seasoned fries.", price: 5.99, category: "sides", tags: [], emoji: "🍟" },
 ];
 
 const $ = (sel) => document.querySelector(sel);
@@ -34,7 +34,7 @@ function renderMenu(filter = "all") {
           <div class="dish-tags">${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
           <h3>${d.name}</h3>
           <p>${d.desc}</p>
-          <span class="price">$${d.price.toFixed(2)}</span>
+          <span class="price">${d.from ? "From " : ""}$${d.price.toFixed(2)}</span>
         </div>
       </article>`
     )

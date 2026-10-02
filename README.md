@@ -22,5 +22,5 @@ python3 -m http.server 8000
 ## Still placeholder
 
 - Address, hours and map link
-- Menu items and prices
+- Menu is missing the Animal Style and Drinks sections from DoorDash
 - The contact form validates input but doesn't send anywhere yet
