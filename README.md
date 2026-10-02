@@ -21,6 +21,6 @@ python3 -m http.server 8000
 
 ## Still placeholder
 
-- DoorDash store URL, address, hours and map link
+- Address, hours and map link
 - Menu items and prices
 - The contact form validates input but doesn't send anywhere yet

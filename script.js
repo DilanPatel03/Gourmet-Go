@@ -1,6 +1,5 @@
 // Your DoorDash store link. Every "Order" button on the site uses this.
-// TODO: replace with the real Gourmet Go DoorDash store URL.
-const DOORDASH_URL = "https://www.doordash.com/";
+const DOORDASH_URL = "https://www.doordash.com/store/44671789";
 
 // Menu data. Edit this list to change what appears on the site.
 const MENU = [
