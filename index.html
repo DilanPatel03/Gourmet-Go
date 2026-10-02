@@ -3,113 +3,159 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gourmet Go — Chef-crafted meals, delivered</title>
-  <meta name="description" content="Gourmet Go delivers chef-crafted meals made from fresh, seasonal ingredients straight to your door.">
+  <title>Gourmet Go — The Future of Fast Food</title>
+  <meta name="description" content="Gourmet Go: gourmet fast food, made fresh and served fast. Drive-thru, dine-in, or delivery on DoorDash.">
+  <meta name="theme-color" content="#0c0a07">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="#top" class="logo">Gourmet<span>Go</span></a>
+      <a href="#top" class="brand" aria-label="Gourmet Go home">
+        <img src="images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-word">Gourmet <b>Go</b></span>
+      </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
       <nav id="nav-links" class="nav-links">
-        <a href="#how">How it works</a>
         <a href="#menu">Menu</a>
+        <a href="#order">Ways to order</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#menu" class="btn btn-small">Order now</a>
+        <a href="#visit">Visit</a>
+        <a href="https://www.doordash.com/" class="btn btn-small js-doordash" target="_blank" rel="noopener">Order now</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Chef-crafted · Delivered fresh</p>
-          <h1>Restaurant-quality meals, <em>on the go.</em></h1>
-          <p class="lead">Seasonal dishes prepared by our chefs each morning and delivered to your door, ready in minutes.</p>
-          <div class="hero-actions">
-            <a href="#menu" class="btn">Browse the menu</a>
-            <a href="#how" class="btn btn-ghost">How it works</a>
-          </div>
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <img class="hero-logo" src="images/logo.svg" alt="" width="96" height="96">
+        <p class="eyebrow">Gourmet fast food</p>
+        <h1 class="glow">The future of <br>fast food.</h1>
+        <p class="lead">Chef-quality burgers, crispy chicken and hand-spun shakes, made fresh to order and served fast.</p>
+        <div class="hero-actions">
+          <a href="https://www.doordash.com/" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
+          <a href="#menu" class="btn btn-ghost">See the menu</a>
         </div>
-        <div class="hero-plate" aria-hidden="true">
-          <div class="plate">
-            <span class="plate-emoji">🍽️</span>
-          </div>
-          <div class="hero-badge badge-1">🌿 Fresh daily</div>
-          <div class="hero-badge badge-2">🚚 Fast delivery</div>
-        </div>
+        <ul class="hero-pills">
+          <li>Drive-thru</li>
+          <li>Dine-in</li>
+          <li>Delivery</li>
+        </ul>
       </div>
     </section>
 
-    <section id="how" class="section">
-      <div class="container">
-        <p class="eyebrow center">How it works</p>
-        <h2 class="center">Great food in three steps</h2>
-        <div class="steps">
-          <article class="step">
-            <div class="step-num">1</div>
-            <h3>Pick your dishes</h3>
-            <p>Choose from a rotating menu of chef-designed meals, from hearty mains to light bowls.</p>
-          </article>
-          <article class="step">
-            <div class="step-num">2</div>
-            <h3>We cook fresh</h3>
-            <p>Our kitchen prepares every order the same day with seasonal, locally sourced ingredients.</p>
-          </article>
-          <article class="step">
-            <div class="step-num">3</div>
-            <h3>Delivered to you</h3>
-            <p>Your meals arrive chilled and ready to heat. Dinner is served in minutes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <div class="neon-line" aria-hidden="true"></div>
 
-    <section id="menu" class="section section-alt">
+    <section id="menu" class="section">
       <div class="container">
-        <p class="eyebrow center">This week's menu</p>
-        <h2 class="center">Something for every craving</h2>
+        <p class="eyebrow center">The menu</p>
+        <h2 class="center">Fast food, done gourmet</h2>
         <div class="filters" role="tablist" aria-label="Filter menu">
           <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
-          <button class="filter" data-filter="mains" role="tab" aria-selected="false">Mains</button>
-          <button class="filter" data-filter="bowls" role="tab" aria-selected="false">Bowls</button>
-          <button class="filter" data-filter="vegetarian" role="tab" aria-selected="false">Vegetarian</button>
-          <button class="filter" data-filter="desserts" role="tab" aria-selected="false">Desserts</button>
+          <button class="filter" data-filter="burgers" role="tab" aria-selected="false">Burgers</button>
+          <button class="filter" data-filter="chicken" role="tab" aria-selected="false">Chicken</button>
+          <button class="filter" data-filter="sides" role="tab" aria-selected="false">Sides</button>
+          <button class="filter" data-filter="shakes" role="tab" aria-selected="false">Shakes &amp; drinks</button>
         </div>
         <div id="menu-grid" class="menu-grid"></div>
+        <div class="center menu-cta">
+          <a href="https://www.doordash.com/" class="btn js-doordash" target="_blank" rel="noopener">Order these on DoorDash</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="order" class="section section-alt">
+      <div class="container">
+        <p class="eyebrow center">Ways to order</p>
+        <h2 class="center">However you're hungry</h2>
+        <div class="ways">
+          <article class="way">
+            <div class="way-icon" aria-hidden="true">🚗</div>
+            <h3>Drive-thru</h3>
+            <p>Pull up, order and go. Gourmet food without leaving your car.</p>
+          </article>
+          <article class="way">
+            <div class="way-icon" aria-hidden="true">🍽️</div>
+            <h3>Dine-in</h3>
+            <p>Grab a seat in our dining room and eat it fresh off the line.</p>
+          </article>
+          <article class="way">
+            <div class="way-icon" aria-hidden="true">🛵</div>
+            <h3>Delivery</h3>
+            <p>Order on DoorDash and get Gourmet Go brought to your door.</p>
+            <a href="https://www.doordash.com/" class="text-link js-doordash" target="_blank" rel="noopener">Order on DoorDash →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo">
+      <div class="container promo-grid">
+        <img src="images/order-bag.jpg" alt="Gourmet Go logo glowing above a branded paper takeout bag" loading="lazy" width="1320" height="1269">
+        <div>
+          <p class="eyebrow">Delivery</p>
+          <h2 class="glow">Hungry?<br>Order now.</h2>
+          <p class="muted">Get your favorites delivered hot and fast through DoorDash.</p>
+          <a href="https://www.doordash.com/" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
+        </div>
       </div>
     </section>
 
     <section id="about" class="section">
       <div class="container about-grid">
-        <div class="about-visual" aria-hidden="true">👨‍🍳</div>
         <div>
           <p class="eyebrow">Our story</p>
-          <h2>Good food shouldn't be complicated</h2>
-          <p>Gourmet Go started with a simple idea: everyone deserves a great meal, even on the busiest days. We partner with local farms and talented chefs to bring the restaurant experience home, without the wait or the dishes.</p>
+          <h2>Gourmet quality at fast food speed</h2>
+          <p class="muted">Gourmet Go was built on one idea: fast food shouldn't mean settling. We use better ingredients, cook every order fresh, and still get you back on the road in minutes.</p>
           <ul class="checks">
-            <li>Locally sourced, seasonal ingredients</li>
-            <li>New dishes every week</li>
-            <li>Recyclable, compostable packaging</li>
+            <li>Fresh, never frozen beef</li>
+            <li>Sauces made in-house</li>
+            <li>Made to order, served fast</li>
           </ul>
+        </div>
+        <img class="about-img" src="images/storefront-drive-thru.jpg" alt="Gourmet Go restaurant at dusk with glowing gold signage and a drive-thru lane" loading="lazy" width="1320" height="1250">
+      </div>
+    </section>
+
+    <section id="visit" class="section section-alt">
+      <div class="container visit-grid">
+        <img class="visit-img" src="images/storefront-night.jpg" alt="Cars lined up outside the Gourmet Go restaurant at night" loading="lazy" width="1147" height="1149">
+        <div>
+          <p class="eyebrow">Visit us</p>
+          <h2>Come see the glow</h2>
+          <!-- TODO: replace with the real address, hours and map link -->
+          <div class="info">
+            <h3>Location</h3>
+            <p class="muted">123 Main Street<br>Your City, ST 00000</p>
+            <a href="https://maps.google.com/" class="text-link" target="_blank" rel="noopener">Get directions →</a>
+          </div>
+          <div class="info">
+            <h3>Hours</h3>
+            <dl class="hours">
+              <dt>Mon – Thu</dt><dd>10:00am – 11:00pm</dd>
+              <dt>Fri – Sat</dt><dd>10:00am – 1:00am</dd>
+              <dt>Sunday</dt><dd>10:00am – 10:00pm</dd>
+            </dl>
+            <p class="small muted">Drive-thru open until close.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section section-dark">
+    <section id="contact" class="section">
       <div class="container contact-grid">
         <div>
           <p class="eyebrow">Get in touch</p>
           <h2>Questions, catering or feedback?</h2>
-          <p>Drop us a note and we'll get back to you within one business day.</p>
+          <p class="muted">Send us a message and we'll get back to you within one business day.</p>
         </div>
         <form id="contact-form" class="contact-form" novalidate>
           <label>Name
@@ -129,28 +175,15 @@
   </main>
 
   <footer class="site-footer">
+    <div class="neon-line" aria-hidden="true"></div>
     <div class="container footer-inner">
-      <a href="#top" class="logo">Gourmet<span>Go</span></a>
-      <p>&copy; <span id="year"></span> Gourmet Go. All rights reserved.</p>
+      <a href="#top" class="brand">
+        <img src="images/logo.svg" alt="" width="32" height="32">
+        <span class="brand-word">Gourmet <b>Go</b></span>
+      </a>
+      <p class="small">The future of fast food. &copy; <span id="year"></span> Gourmet Go.</p>
     </div>
   </footer>
-
-  <!-- Cart -->
-  <button id="cart-button" class="cart-button" aria-label="Open cart">
-    🛒 <span id="cart-count">0</span>
-  </button>
-  <aside id="cart" class="cart" aria-hidden="true" aria-label="Your order">
-    <div class="cart-head">
-      <h3>Your order</h3>
-      <button id="cart-close" class="icon-btn" aria-label="Close cart">✕</button>
-    </div>
-    <ul id="cart-items" class="cart-items"></ul>
-    <div class="cart-foot">
-      <div class="cart-total"><span>Total</span><strong id="cart-total">$0.00</strong></div>
-      <button id="checkout" class="btn btn-block">Checkout</button>
-    </div>
-  </aside>
-  <div id="overlay" class="overlay"></div>
 
   <script src="script.js"></script>
 </body>
