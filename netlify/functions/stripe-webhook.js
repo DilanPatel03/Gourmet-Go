@@ -8,6 +8,7 @@
 //   TWILIO_FROM_NUMBER     required, your Twilio phone number, e.g. +15551234567
 //   ORDER_ALERT_PHONE      required, who gets the texts, e.g. +15557654321 (comma-separate several numbers)
 import { formatMoney } from "../../data/ordering.js";
+import { sendSms } from "../lib/sms.js";
 import { stripe } from "../lib/stripe.js";
 
 const text = (status, body) => new Response(body, { status });
@@ -29,22 +30,6 @@ async function orderMessage(client, session) {
     ...(m.type === "delivery" ? [`Deliver to: ${[m.street, m.unit, m.zip].filter(Boolean).join(", ")}`] : []),
     ...(m.notes ? [`Notes: ${m.notes}`] : []),
   ].join("\n");
-}
-
-async function sendText(body) {
-  const { TWILIO_ACCOUNT_SID: sid, TWILIO_AUTH_TOKEN: token, TWILIO_FROM_NUMBER: from, ORDER_ALERT_PHONE: to } = process.env;
-  if (!sid || !token || !from || !to) throw new Error("Twilio environment variables are not set");
-  for (const number of to.split(",").map((n) => n.trim()).filter(Boolean)) {
-    const res = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${Buffer.from(`${sid}:${token}`).toString("base64")}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({ To: number, From: from, Body: body }),
-    });
-    if (!res.ok) throw new Error(`Twilio error ${res.status}: ${await res.text()}`);
-  }
 }
 
 export default async (req) => {
@@ -70,7 +55,7 @@ export default async (req) => {
   if (!paid) return text(200, "Ignored");
 
   try {
-    await sendText(await orderMessage(client, event.data.object));
+    await sendSms(process.env.ORDER_ALERT_PHONE, await orderMessage(client, event.data.object));
     return text(200, "Sent");
   } catch (error) {
     // A non-2xx response makes Stripe retry the event later, so the text isn't lost.

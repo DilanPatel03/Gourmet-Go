@@ -83,6 +83,39 @@ To pause online orders (for example when closed or slammed), set `ORDERS_PAUSED`
 and redeploy. If a text fails to send, Stripe retries the webhook automatically, so the order isn't lost;
 every order is also listed in the Stripe dashboard under Payments.
 
+## Client portal (`/portal/`)
+
+A portal for the businesses you build websites for. Each client opens it with a private link and can:
+
+- **Google Ads:** ask to start a campaign (goal, monthly budget, area), change it, pause, resume or stop.
+  You make the change in Google Ads and update the request.
+- **Billing:** pay the $100/year website & domain care plan (a Stripe subscription that renews
+  automatically), and update their card, download receipts or cancel through Stripe's billing page.
+- **Requests:** submit support or maintenance requests (with an "urgent" flag) and follow replies.
+- **Messages:** message you directly.
+
+You manage everything at **`/portal/admin.html`**: add clients (each gets a private link to send them),
+see unread requests and messages, change request status, reply, and see who has paid.
+
+- Brand name, plan price and what the plan includes: `portal/config.js` (currently the placeholder "Your Studio").
+- Server logic: `netlify/lib/portal-api.js`, served by `netlify/functions/portal.js` and
+  `netlify/functions/portal-stripe-webhook.js`. Data is stored in Netlify Blobs (built into Netlify).
+
+### Setting it up on Netlify
+
+1. `PORTAL_ADMIN_KEY`: a long random secret (16+ characters). You type it to sign in to the admin page.
+2. Payments, using **your business's** Stripe account (not the restaurant's):
+   - `PORTAL_STRIPE_SECRET_KEY`: your Stripe secret key.
+   - Webhook endpoint `https://YOUR-SITE/api/portal-stripe-webhook` with events `checkout.session.completed`,
+     `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`;
+     put its signing secret in `PORTAL_STRIPE_WEBHOOK_SECRET`.
+   - In Stripe, turn on the **customer portal** (Settings → Billing → Customer portal) so "Manage billing" works.
+3. Optional: `PORTAL_ALERT_PHONE` to get a text for new requests, messages and plan payments
+   (uses the same `TWILIO_*` settings as order texts).
+
+Portal links work like passwords: anyone with a client's link can open that client's portal. If a link
+leaks, open the client in the admin page and choose **New portal link**; the old one stops working.
+
 ## Still placeholder
 
 - Street address and hours (the Visit section links to DoorDash for now)

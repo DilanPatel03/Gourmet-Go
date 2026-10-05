@@ -5,6 +5,7 @@
   "description": "Gourmet Go website, online ordering and AI assistant",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
+    "@netlify/blobs": "^11.1.3",
     "stripe": "^23.0.0"
   }
 }
