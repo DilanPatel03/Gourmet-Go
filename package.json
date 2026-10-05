@@ -1,0 +1,9 @@
+{
+  "name": "gourmet-go",
+  "private": true,
+  "type": "module",
+  "description": "Gourmet Go website and AI assistant",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0"
+  }
+}

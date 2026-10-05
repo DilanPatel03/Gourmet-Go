@@ -1,0 +1,5 @@
+# Netlify hosting: the site is plain files at the repo root, and the AI assistant
+# runs as a function at /api/chat. Set ANTHROPIC_API_KEY in Netlify's environment variables.
+[build]
+  publish = "."
+  functions = "netlify/functions"
