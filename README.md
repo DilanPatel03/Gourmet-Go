@@ -2,7 +2,7 @@
 
 Website for Gourmet Go, *the future of fast food*. Drive-thru, dine-in and delivery on DoorDash.
 
-Plain HTML/CSS/JS with no build step, plus one small server function for the AI assistant.
+Plain HTML/CSS/JS with no build step, plus small Netlify server functions for the AI assistant and online ordering.
 
 ## Run locally
 
@@ -20,7 +20,8 @@ ANTHROPIC_API_KEY=sk-ant-... npx netlify dev
 
 ## Editing
 
-- **Menu, prices and DoorDash link:** `data/menu.js`. The website and the AI assistant both read this file.
+- **Menu, prices and DoorDash link:** `data/menu.js`. The website, online ordering and the AI assistant all read this file.
+- **Pickup time, delivery fee, minimum and delivery ZIP codes:** `data/ordering.js`.
 - **What the assistant knows and how it answers:** the `SYSTEM_PROMPT` in `netlify/functions/chat.js`.
 - **Address and hours:** the "Visit us" section in `index.html`.
 - **Brand colors:** the CSS variables in `:root` in `styles.css` (`--gold`, `--bg`, …).
@@ -46,6 +47,41 @@ The "Ask Gourmet Go" chat answers questions about the menu and ordering using Cl
 
 On GitHub Pages (no server) the chat window still appears but tells visitors the assistant
 is unavailable and points them to DoorDash.
+
+## Online ordering (pickup and delivery)
+
+Customers tap **Add** on menu items, open their order (bag icon in the header), choose pickup or
+delivery, and pay on Stripe's secure checkout page (cards, Apple Pay, Google Pay). Each paid order is
+texted to the restaurant through Twilio.
+
+- `cart.js` is the cart and order panel in the browser.
+- `netlify/functions/checkout.js` prices the order from `data/menu.js` on the server (the browser
+  can't change prices) and creates the Stripe Checkout page.
+- `netlify/functions/stripe-webhook.js` receives Stripe's "payment succeeded" event and sends the text.
+- `order-success.html` is the thank-you page customers land on after paying.
+- **Delivery stays hidden until you list ZIP codes** in `data/ordering.js` (and set your real fee and minimum).
+
+### Setting it up
+
+1. **Stripe** (stripe.com): create an account and finish business verification so payouts reach your bank.
+   - *Developers → API keys:* copy the **secret key** into Netlify as `STRIPE_SECRET_KEY`.
+   - *Developers → Webhooks → Add endpoint:* URL `https://YOUR-SITE/api/stripe-webhook`, events
+     `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Copy its
+     **signing secret** into Netlify as `STRIPE_WEBHOOK_SECRET`.
+   - *Sales tax:* create a tax rate (Product catalog → Tax rates) with your local rate and put its id
+     (`txr_...`) in Netlify as `STRIPE_TAX_RATE_ID`. Without it, no tax is charged. It's applied to food,
+     not the delivery fee; check your local rules.
+   - *Settings → Emails:* turn on receipts for successful payments.
+   - Test first with the **test-mode** key and card `4242 4242 4242 4242`, then switch to the live key.
+2. **Twilio** (twilio.com): buy a phone number, then add `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`,
+   `TWILIO_FROM_NUMBER` (e.g. `+15551234567`) and `ORDER_ALERT_PHONE` (the restaurant phone; separate
+   several with commas) in Netlify. US numbers must be registered for texting (A2P 10DLC, or toll-free
+   verification) before messages are delivered, which can take a few days.
+3. Redeploy on Netlify after adding environment variables.
+
+To pause online orders (for example when closed or slammed), set `ORDERS_PAUSED` to `true` in Netlify
+and redeploy. If a text fails to send, Stripe retries the webhook automatically, so the order isn't lost;
+every order is also listed in the Stripe dashboard under Payments.
 
 ## Still placeholder
 

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Order received — Gourmet Go</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0907">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Manrope:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="./" class="brand" aria-label="Gourmet Go home">
+        <img src="images/logo.svg" alt="" width="34" height="34">
+        <span class="brand-word">Gourmet Go</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="section success">
+    <div class="container success-inner">
+      <img class="hero-logo" src="images/logo.svg" alt="" width="72" height="72">
+      <p class="eyebrow eyebrow-rule">Order received</p>
+      <h1 class="metal success-title">Thank you.</h1>
+      <p class="success-code">Order <strong id="order-code">confirmed</strong></p>
+      <p class="lead" id="order-eta">We've got your order and the kitchen is on it.</p>
+      <p class="muted">A receipt is on its way to your email. Questions about your order? Use the contact form on our website and include your order number.</p>
+      <div class="hero-actions">
+        <a href="./" class="btn">Back to Gourmet Go</a>
+        <a href="./#menu" class="btn btn-ghost">View the menu</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Show the order number and timing from the checkout redirect, and empty the cart.
+    const params = new URLSearchParams(location.search);
+    const code = params.get("order") || "";
+    const eta = parseInt(params.get("eta"), 10);
+    if (/^GG-[A-Z0-9]{4}$/.test(code)) document.getElementById("order-code").textContent = code;
+    if (eta > 0 && eta < 240) {
+      document.getElementById("order-eta").textContent =
+        params.get("type") === "delivery"
+          ? `Your delivery should arrive in about ${eta} minutes.`
+          : `Your pickup order will be ready in about ${eta} minutes. See you soon.`;
+    }
+    try { localStorage.removeItem("gg-cart"); } catch {}
+  </script>
+</body>
+</html>

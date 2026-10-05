@@ -19,6 +19,10 @@
         <img src="images/logo.svg" alt="" width="34" height="34">
         <span class="brand-word">Gourmet Go</span>
       </a>
+      <button class="cart-btn js-cart-open" type="button" aria-controls="cart-panel" aria-label="Your order, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 13h-11zM9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+        <span class="cart-count js-cart-count" hidden>0</span>
+      </button>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span>
       </button>
@@ -27,7 +31,7 @@
         <a href="#order">Ways to order</a>
         <a href="#about">Our story</a>
         <a href="#visit">Visit</a>
-        <a href="https://www.doordash.com/store/44671789" class="btn btn-small js-doordash" target="_blank" rel="noopener">Order now</a>
+        <a href="#menu" class="btn btn-small">Order online</a>
       </nav>
     </div>
   </header>
@@ -41,8 +45,8 @@
         <h1 class="metal">The future of <br>fast food.</h1>
         <p class="lead">Smash burgers, crispy chicken and loaded fries, finished with our signature Gourmet Go sauce and seasoning.</p>
         <div class="hero-actions">
-          <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
-          <a href="#menu" class="btn btn-ghost">View the menu</a>
+          <a href="#menu" class="btn">Order online</a>
+          <a href="https://www.doordash.com/store/44671789" class="btn btn-ghost js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
         </div>
         <p class="hero-services">Drive-thru <i></i> Dine-in <i></i> Delivery</p>
       </div>
@@ -58,8 +62,8 @@
         </header>
         <div id="menu-board" class="menu-board"></div>
         <div class="menu-foot">
-          <p class="muted small">Prices as listed on DoorDash.</p>
-          <a href="https://www.doordash.com/store/44671789" class="btn js-doordash" target="_blank" rel="noopener">Order on DoorDash</a>
+          <p class="muted small">Tap <strong>Add</strong> on any item, then open your order to check out. Prices before tax.</p>
+          <button type="button" class="btn js-cart-open">View your order</button>
         </div>
       </div>
     </section>
@@ -84,7 +88,7 @@
           <article class="way">
             <svg class="way-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 13h-11zM9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
             <h3>Delivery</h3>
-            <p>Order on DoorDash and get Gourmet Go brought to your door.</p>
+            <p>Get Gourmet Go brought to your door. Order delivery on our website where available, or through DoorDash.</p>
             <a href="https://www.doordash.com/store/44671789" class="text-link js-doordash" target="_blank" rel="noopener">Order on DoorDash <span aria-hidden="true">→</span></a>
           </article>
         </div>
@@ -180,6 +184,7 @@
   </footer>
 
   <script type="module" src="script.js"></script>
+  <script type="module" src="cart.js"></script>
   <script type="module" src="chat.js"></script>
 </body>
 </html>

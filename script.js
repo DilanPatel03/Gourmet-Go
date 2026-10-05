@@ -23,7 +23,10 @@ function renderMenu() {
                 <span class="mi-dots" aria-hidden="true"></span>
                 <span class="mi-price">${d.from ? "<small>from</small>" : ""}$${d.price.toFixed(2)}</span>
               </div>
-              <p class="mi-desc">${d.desc}</p>
+              <div class="mi-foot">
+                <p class="mi-desc">${d.desc}</p>
+                <button type="button" class="mi-add" data-add="${d.id}" aria-label="Add ${d.name} to your order">Add</button>
+              </div>
             </li>`
             )
             .join("")}

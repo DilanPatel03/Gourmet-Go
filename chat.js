@@ -21,7 +21,7 @@ const save = () => {
 const root = document.createElement("div");
 root.className = "chat";
 root.innerHTML = `
-  <button class="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel">
+  <button class="chat-launcher" type="button" aria-label="Ask Gourmet Go" aria-expanded="false" aria-controls="chat-panel">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
     <span>Ask Gourmet Go</span>
   </button>
