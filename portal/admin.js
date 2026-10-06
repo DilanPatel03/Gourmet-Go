@@ -172,7 +172,8 @@ function copyBox(link) {
       () => toast("Link copied."),
       () => { input.select(); toast("Press Ctrl+C / ⌘C to copy.", "warn"); });
   });
-  return h("div", { class: "copy" }, input, btn);
+  const open = h("a", { class: "btn btn-quiet btn-small", href: link, target: "_blank", rel: "noopener" }, "Open");
+  return h("div", { class: "copy" }, input, btn, open);
 }
 
 function clientList() {

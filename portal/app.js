@@ -29,11 +29,19 @@ function signedOut(text) {
       h("p", { class: "muted" }, text)));
 }
 
+// A link opened right after it was created can take a few seconds to register, so retry before giving up.
+let retriesLeft = params.has("k") ? 4 : 0;
+
 async function load() {
   if (!key) return signedOut(`Open this page with the private link ${PORTAL.brand} sent you.`);
   try {
     data = await api("me", { key });
   } catch (e) {
+    if (e.status === 401 && retriesLeft > 0) {
+      retriesLeft -= 1;
+      if (!data) app.replaceChildren(h("p", { class: "loading" }, "Opening your portal…"));
+      return setTimeout(load, 1500);
+    }
     if (e.status === 401) {
       try { localStorage.removeItem(KEY_STORE); } catch {}
       return signedOut(e.message);
