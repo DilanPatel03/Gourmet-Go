@@ -12,7 +12,7 @@ const line = (v, max) => text(v, max).replace(/\s+/g, " ");
 const ACTIVE = ["active", "trialing", "past_due"];
 const STATUSES = ["open", "in_progress", "done"];
 
-export function createPortalHandler({ store, stripe, notify, now = () => new Date().toISOString() }) {
+export function createPortalHandler({ store, stripe, notify, push = null, now = () => new Date().toISOString() }) {
   const bearer = (req) => {
     const h = req.headers.get("authorization") ?? "";
     return h.startsWith("Bearer ") ? h.slice(7).trim() : "";
@@ -36,9 +36,9 @@ export function createPortalHandler({ store, stripe, notify, now = () => new Dat
   }
   const saveClient = (c) => store.setJSON(`clients/${c.id}`, c);
   const view = ({ tokenHash, ...client }) => client;
-  async function safeNotify(message) {
+  async function safeNotify(message, clientId) {
     try {
-      await notify(message);
+      await notify(message, { clientId });
     } catch (error) {
       console.error("Portal notification failed:", error.message);
     }
@@ -103,7 +103,7 @@ export function createPortalHandler({ store, stripe, notify, now = () => new Dat
       await store.setJSON(`tickets/${client.id}/${ticket.id}`, ticket);
       bump(client, "tickets");
       await saveClient(client);
-      await safeNotify(`${ticket.priority === "urgent" ? "URGENT " : ""}New request from ${client.name}: ${ticket.subject}`);
+      await safeNotify(`${ticket.priority === "urgent" ? "URGENT " : ""}New request from ${client.name}: ${ticket.subject}`, client.id);
       return json(201, { ticket });
     }
 
@@ -119,7 +119,7 @@ export function createPortalHandler({ store, stripe, notify, now = () => new Dat
       await store.setJSON(key, ticket);
       bump(client, "tickets");
       await saveClient(client);
-      await safeNotify(`${client.name} replied on "${ticket.subject}"`);
+      await safeNotify(`${client.name} replied on "${ticket.subject}"`, client.id);
       return json(200, { ticket });
     }
 
@@ -130,7 +130,7 @@ export function createPortalHandler({ store, stripe, notify, now = () => new Dat
       await store.setJSON(`messages/${client.id}/${message.id}`, message);
       bump(client, "messages");
       await saveClient(client);
-      await safeNotify(`New message from ${client.name}: ${body.slice(0, 140)}`);
+      await safeNotify(`New message from ${client.name}: ${body.slice(0, 140)}`, client.id);
       return json(201, { message });
     }
 
@@ -176,6 +176,24 @@ export function createPortalHandler({ store, stripe, notify, now = () => new Dat
   // ---- Admin routes ----
   async function adminRoute(req, parts, origin) {
     const [, section, id, sub] = parts; // parts[0] === "admin"
+
+    if (section === "push") {
+      if (!push) return json(501, { error: "Notifications aren't available." });
+      if (req.method === "GET" && id === "key") return json(200, { enabled: push.enabled(), publicKey: push.publicKey() });
+      if (req.method === "POST" && id === "subscribe") {
+        if (!push.enabled()) return json(503, { error: "Notifications aren't set up yet. Add the VAPID keys on Netlify." });
+        if (!(await push.subscribe((await readBody(req)).subscription))) return json(400, { error: "This device couldn't be registered." });
+        return json(200, { ok: true });
+      }
+      if (req.method === "POST" && id === "unsubscribe") {
+        await push.unsubscribe((await readBody(req)).endpoint);
+        return json(200, { ok: true });
+      }
+      if (req.method === "POST" && id === "test") {
+        const sent = await push.send({ title: PORTAL.brand, body: "Notifications are working.", url: "/portal/admin.html" });
+        return json(200, { sent });
+      }
+    }
 
     if (req.method === "GET" && section === "clients" && !id) {
       const clients = (await list("clients/")).filter((c) => !c.archived);
@@ -329,7 +347,7 @@ export function createPortalWebhookHandler({ store, stripe, notify, secret }) {
     else if (after.cancelAtPeriodEnd && !before.cancelAtPeriodEnd) message = `${client.name} turned off auto-renew for the care plan.`;
     if (message) {
       try {
-        await notify(message);
+        await notify(message, { clientId: client.id });
       } catch (error) {
         console.error("Portal notification failed:", error.message);
       }

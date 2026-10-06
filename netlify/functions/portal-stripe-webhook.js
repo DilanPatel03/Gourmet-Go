@@ -7,16 +7,19 @@
 //                                 customer.subscription.updated, customer.subscription.deleted
 import { createPortalWebhookHandler } from "../lib/portal-api.js";
 import { blobStore } from "../lib/portal-store.js";
-import { sendSms, smsConfigured } from "../lib/sms.js";
+import { createNotifier } from "../lib/portal-notify.js";
+import { createPush } from "../lib/push.js";
 import { stripe } from "../lib/stripe.js";
 
+const store = blobStore();
+const push = createPush({ store });
+const notify = createNotifier({ store, push });
+
 export default createPortalWebhookHandler({
-  store: blobStore(),
+  store,
   stripe: () => stripe("PORTAL_STRIPE_SECRET_KEY"),
   secret: () => process.env.PORTAL_STRIPE_WEBHOOK_SECRET,
-  notify: async (message) => {
-    if (process.env.PORTAL_ALERT_PHONE && smsConfigured()) await sendSms(process.env.PORTAL_ALERT_PHONE, message);
-  },
+  notify,
 });
 
 export const config = { path: "/api/portal-stripe-webhook" };

@@ -113,6 +113,19 @@ see unread requests and messages, change request status, reply, and see who has 
 3. Optional: `PORTAL_ALERT_PHONE` to get a text for new requests, messages and plan payments
    (uses the same `TWILIO_*` settings as order texts).
 
+### Admin app on your phone
+
+`/portal/admin.html` installs as an app (Add to Home Screen) with its own icon, opens full-screen,
+keeps you signed in, shows an unread count on the icon and sends **push notifications** for new
+requests, messages and payments. Tapping a notification opens that client.
+
+1. On Netlify, add `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` (generate a pair with
+   `npx web-push generate-vapid-keys`) and `VAPID_SUBJECT` (e.g. `mailto:you@yourstudio.com`), then redeploy.
+2. Open `/portal/admin.html` on your phone and sign in.
+3. **iPhone:** in Safari tap Share → Add to Home Screen, then open the app from the home screen.
+   **Android:** tap Install (or browser menu → Install app).
+4. In the app, tap **Turn on** next to Notifications and allow them.
+
 Portal links work like passwords: anyone with a client's link can open that client's portal. If a link
 leaks, open the client in the admin page and choose **New portal link**; the old one stops working.
 
