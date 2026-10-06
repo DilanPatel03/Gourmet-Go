@@ -278,7 +278,10 @@ export function createPortalHandler({ store, stripe, notify, push = null, now = 
     const parts = url.pathname.replace(/^\/api\/portal\/?/, "").split("/").filter(Boolean);
     try {
       if (parts[0] === "admin") {
-        if (!isAdmin(req)) return json(401, { error: "Wrong admin key." });
+        const configured = process.env.PORTAL_ADMIN_KEY ?? "";
+        if (!configured) return json(503, { error: "No admin password is set yet. Add PORTAL_ADMIN_KEY in Netlify (Environment variables), then redeploy." });
+        if (configured.length < 16) return json(503, { error: `The admin password saved in Netlify is too short (${configured.length} characters). Change PORTAL_ADMIN_KEY to at least 16 characters, then redeploy.` });
+        if (!isAdmin(req)) return json(401, { error: "That password doesn't match PORTAL_ADMIN_KEY in Netlify. It's case-sensitive." });
         return await adminRoute(req, parts, url.origin);
       }
       const client = await clientFor(req);
