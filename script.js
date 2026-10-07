@@ -23,10 +23,7 @@ function renderMenu() {
                 <span class="mi-dots" aria-hidden="true"></span>
                 <span class="mi-price">${d.from ? "<small>from</small>" : ""}$${d.price.toFixed(2)}</span>
               </div>
-              <div class="mi-foot">
-                <p class="mi-desc">${d.desc}</p>
-                <button type="button" class="mi-add" data-add="${d.id}" aria-label="Add ${d.name} to your order">Add</button>
-              </div>
+              <p class="mi-desc">${d.desc}</p>
             </li>`
             )
             .join("")}
@@ -34,6 +31,15 @@ function renderMenu() {
       </section>`;
   }).join("");
 }
+
+// ---- Order count on the bag icon (the order itself lives on order.html) ----
+try {
+  const count = JSON.parse(localStorage.getItem("gg-cart") || "[]").reduce((n, l) => n + (l.qty || 0), 0);
+  document.querySelectorAll(".js-cart-count").forEach((el) => {
+    el.textContent = count;
+    el.hidden = count === 0;
+  });
+} catch {}
 
 // ---- Mobile nav ----
 const navToggle = $(".nav-toggle");

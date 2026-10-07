@@ -78,7 +78,7 @@ export default async (req) => {
       client_reference_id: code,
       metadata: { order_code: code, type, name, phone, street, unit, zip: zip.slice(0, 5), notes },
       success_url: `${origin}/order-success.html?order=${code}&type=${type}&eta=${eta}`,
-      cancel_url: `${origin}/#menu`,
+      cancel_url: `${origin}/order.html`,
       expires_at: Math.floor(Date.now() / 1000) + 31 * 60, // abandoned checkouts expire after ~30 minutes
     });
     return reply(200, { url: session.url, code });

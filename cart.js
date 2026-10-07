@@ -1,4 +1,4 @@
-// Online ordering: cart, order details and hand-off to Stripe Checkout (netlify/functions/checkout.js).
+// Online ordering (order.html): cart, order details and hand-off to Stripe Checkout (netlify/functions/checkout.js).
 import { MENU } from "./data/menu.js";
 import { ORDERING, deliveryAvailable, formatMoney, priceOrder } from "./data/ordering.js";
 
@@ -126,6 +126,8 @@ function render() {
     ${fee ? `<div><dt>Delivery fee</dt><dd>${formatMoney(fee)}</dd></div>` : ""}
     <div class="cart-total"><dt>Total <span>before tax</span></dt><dd>${formatMoney(subtotal + fee)}</dd></div>`;
   payBtn.disabled = busy || !cart.length;
+  // Let the order page keep its +/- buttons and order bar in sync.
+  document.dispatchEvent(new CustomEvent("cart:change", { detail: { cart: cart.map((l) => ({ ...l })), count, subtotal } }));
 }
 
 function add(id) {

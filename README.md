@@ -50,11 +50,11 @@ is unavailable and points them to DoorDash.
 
 ## Online ordering (pickup and delivery)
 
-Customers tap **Add** on menu items, open their order (bag icon in the header), choose pickup or
-delivery, and pay on Stripe's secure checkout page (cards, Apple Pay, Google Pay). Each paid order is
+Every "Order online" button opens **`order.html`**, a separate order page. Customers tap **Add** on items,
+then **View order** (bottom bar) to choose pickup or delivery, and pay on Stripe's secure checkout page (cards, Apple Pay, Google Pay). Each paid order is
 texted to the restaurant through Twilio.
 
-- `cart.js` is the cart and order panel in the browser.
+- `order.html` + `order.js` is the order page; `cart.js` is the cart and checkout panel it uses.
 - `netlify/functions/checkout.js` prices the order from `data/menu.js` on the server (the browser
   can't change prices) and creates the Stripe Checkout page.
 - `netlify/functions/stripe-webhook.js` receives Stripe's "payment succeeded" event and sends the text.
